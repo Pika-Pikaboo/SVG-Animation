@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Animation</title>
+    <style>
+        :root {
+            --dark-color: #635bff;
+            --light-color: #80e9ff;
+        }
+
+        svg {
+            display: block;
+            max-width: 500px;
+            margin: 7% auto;
+            cursor: pointer;
+        }
+
+        #darkGroup {
+            fill: var(--dark-color);
+        }
+
+        #lightGroup {
+            fill: var(--light-color);
+        }
+
+        #dark1,
+        #dark2,
+        #light1 {
+            transition: all 1s ease;
+        }
+
+        #dark2 {
+            transform: translateX(-100%);
+        }
+
+        svg:hover #light1 {
+            transform: translateX(20%);
+        }
+
+        svg:hover #dark1 {
+            transform: translateX(40%);
+            opacity: 0;
+        }
+
+        svg:hover #dark2 {
+            transform: translateX(5%);
+        }
+    </style>
+</head>
+
+<body>
+    <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="100" />
+        <g id="triangles" clip-path="url(#clip0_0_1)">
+            <rect width="120" height="100" fill="white" />
+            <g id="lightGroup">
+                <path id="light1" opacity="0.7"
+                    d="M38.2085 47.8005C39.5504 48.5552 39.572 50.4796 38.2474 51.2644L13.6596 65.831C12.335 66.6157 10.6576 65.6723 10.6403 64.1328L10.3191 35.5557C10.3018 34.0162 11.9576 33.0353 13.2995 33.7901L38.2085 47.8005Z" />
+            </g>
+            <g id="darkGroup">
+                <path id="dark1" opacity="0.7"
+                    d="M52.1762 47.7956C53.5168 48.5527 53.535 50.4771 52.2091 51.2595L27.5957 65.783C26.2697 66.5654 24.594 65.619 24.5794 64.0794L24.3084 35.5019C24.2938 33.9623 25.9513 32.9843 27.2918 33.7415L52.1762 47.7956Z" />
+                <path id="dark2" opacity="0.7"
+                    d="M38.0599 47.8704C39.3911 48.6438 39.3859 50.5683 38.0505 51.3345L13.262 65.5571C11.9266 66.3233 10.2626 65.3566 10.2667 63.817L10.3439 35.2382C10.348 33.6986 12.0173 32.7409 13.3485 33.5143L38.0599 47.8704Z" />
+            </g>
+        </g>
+        <defs>
+            <clipPath id="clip0_0_1">
+                <rect width="120" height="100" fill="white" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <script>
+        const svg = document.getElementById("triangles");
+        svg.onclick = (e) => {
+            const colors = ['red', 'orange', 'aqua', 'greenyellow', 'yellow', 'dodgerblue', 'pink'];
+            const random = () => colors[Math.floor(Math.random() * colors.length)];
+            document.documentElement.style.cssText = `
+            --dark-color: ${random()};
+            --light-color: ${random()};
+            `;
+        }
+    </script>
+</body>
+
+</html>
